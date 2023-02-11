@@ -19,3 +19,4 @@ Conclusion and recommendation-
    •	If there was use of promo the sales increased, use of promo should be in increased in the stores specially during holidays.
    •	Decision tree should be used in the analysis as it outperforms other models and has a r-squared score of 0.97.
 
+![image](https://github.com/pi-mishra/Rossmann-Sales-Prediction-Regression-/blob/main/Rossmann_Sales_Prediction_(Piyush)_Capstone_Project.ipynb)
