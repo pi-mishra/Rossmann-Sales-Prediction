@@ -5,7 +5,7 @@
   * [Problem Statement](#problem-statement)
   * [Data Description](#data-description)
   * [Project Outline](#project-outline)
-    - 1 [Data Wrangling](##data-wrangling)
+    - 1 [Knowing the data](##Knowing-the-data)
     - 2 [Normalization](#normalization)
     - 3 [EDA](#eda)
     - 4 [ Encoding categorical values](#encoding-categorical-values)
