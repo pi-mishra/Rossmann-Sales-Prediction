@@ -1,7 +1,7 @@
 # Rossmann-Sales-Prediction (Capstone project)
 
 ## Table of Content
-  * [Abstract](#abstract)
+  * [Summary](#summary)
   * [Problem Statement](#problem-statement)
   * [Data Description](#data-description)
   * [Project Outline](#project-outline)
@@ -17,8 +17,18 @@
   * [Reference](#reference)
 
 
-# Abstract
-This project focuses on forecasting daily sales for over 3,000 drug stores of Rossmann in 7 European countries. Historical sales data for 1,115 stores and supplemental information about the stores were provided. The sales were influenced by various factors such as promotions, competition, school and state holidays, seasonality, and locality. A machine learning model was developed to predict the daily sales and improve the efficiency of the store managers in their sales forecasting. The model was trained on the historical sales data and store information, including features such as store Id, store type, promotions, competition distance, and more. The results of the model showed promising accuracy in predicting the daily sales for the Rossmann stores.
+# Summary
+This project involved merging two datasets into one dataframe called all_store, which had 1017209 rows and 18 columns. The dataframe consisted of int, object, and float datatypes, and object datatypes were later converted to int. There were no duplicate values, but six columns had null values that needed to be treated.
+
+To better understand the data the year, month, and day from the "date" column were extracted and then dropped. The "Open" column was also dropped since no sales occurred when stores were closed. Furthermore, 49% of data was missing from columns "Promo2SinceWeek," "Promo2SinceYear," and "PromoInterval," so they were dropped. Considering date as categories we have filled ‘CompetitionOpenSinceMonth’ and 'CompetitionOpenSinceYear' with mode. Considering there is no competition or the competion is so far that there is no account of the data, so filling null values with 0.
+
+The most common type of store was "a" with 551,627, followed by "d" with 312,912, "c" with 136,840, and "b" with 15,830. It was discovered that store type and sales were correlated, with more stores leading to more sales. Monday had the highest number of sales, followed by Tuesday, Friday, Wednesday, Thursday, Saturday, and Sunday. Similarly, average sales for different days of the week followed the same trend. Store B had higher average sales than other stores C, A, and D, respectively. Monthly sales over the year increased, with an increase in the number of stores leading to more customers' visits and higher sales. Sales data were right-skewed, and 17% of stores were affected by the closure of public schools. No promos were run on Saturday and Sunday, and sales increased when the promo was used.
+
+It was observed that the "CompetitionDistance" column had a large positive skewness of 2.93, indicating a heavily skewed right-tailed distribution. On the other hand, "Sales" had a small positive skewness of 0.64, indicating a slightly skewed right-tailed distribution, while "Customers" had a moderate positive skewness of 1.60, indicating a skewed right-tailed distribution.
+
+To remove outliers the IQR method was used and then one-hot encoding was performed. The data were then scaled using MinMaxScaler.
+
+Conclusion was made that the decision tree and XG boost models outperformed linear, ridge, and lasso regression models in predicting sales of Rossman stores. The decision tree model achieved an R2 score of 0.973 and a low RMSE of 538, while the XG boost model achieved an R2 score of 0.926 and a relatively low RMSE of 849. In contrast, the linear, ridge, and lasso regression models achieved similar R2 scores of around 0.893, with higher RMSE values ranging from 1021 to 1022. The decision tree and XG boost models are more accurate and may be more robust to non-linear relationships in the data, making them the preferred models for predicting sales of Rossman stores.
 
 # Problem Statement
 The problem statement is to predict the daily sales for Rossmann stores based on historical sales data and various influencing factors such as promotions, competition, holidays, seasonality, and store location. The goal is to provide store managers with accurate sales predictions for up to six weeks in advance to help them make informed decisions. The task is to forecast the sales column for a test set of 1,115 Rossmann stores using data such as store Id, store type, assortment level, competition distance, promo information, and other relevant factors. The accuracy of the predictions can vary based on individual store circumstances, and the challenge is to develop a model that can effectively consider all the influencing factors to produce accurate sales predictions.
@@ -46,7 +56,13 @@ PromoInterval | object | describes the consecutive intervals Promo2 is started, 
 
 # Project Outline
 
-##1. Data Wrangling - After loading our dataset we used .isnull().mean() to get the percentage of null data in the columns. We dropped promo2sinceweek , promo2sinceyear, promointerval as there are 49% data null. Considering date as categories we have filled ‘CompetitionOpenSinceMonth’ and 'CompetitionOpenSinceYear' with mode. Considering there is no competition or the competion is so far that there is no account of the data, so filling null values with 0.There were 0 sales when the stores were closed so we are dropping the ‘Open’ column as it will not provide any useful information for the analysis.
+## Knowing the data-
+   * The 2 datasets are merged into 1 dataframe i.e. all_store consisting of 1017209 rows and 18 columns.
+   * The dataframe consist of int, object and float datatypes. Object data type will be changed to int later.
+   * There are 0 dublicate value.
+   * There are 6 columns (CompetitionDistance, CompetitionOpenSinceMonth, CompetitionOpenSinceYear, Promo2SinceWeek, Promo2SinceYear, PromoInterval) that has null          values it needs to be treated.
+
+
 ![r1](https://user-images.githubusercontent.com/102457813/218310603-284aa0fd-2cbe-48b2-9bcf-290f7083160e.png)
 
 
