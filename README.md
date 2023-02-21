@@ -62,8 +62,20 @@ PromoInterval | object | describes the consecutive intervals Promo2 is started, 
    * There are 0 dublicate value.
    * There are 6 columns (CompetitionDistance, CompetitionOpenSinceMonth, CompetitionOpenSinceYear, Promo2SinceWeek, Promo2SinceYear, PromoInterval) that has null          values it needs to be treated.
 
+## Understanding the variables-
+   * The average daily sales per store is 5,773 with an average of 633 customers per day.
+   * Stores are open for business for most days with a mean of 0.8 indicating that they are closed only 20% of the time.
+   * Promotions are run on average 40% of the time across all stores.
+   * The majority of stores are not impacted by school holidays with a mean of 0.2 indicating that they are open during school holidays.
+   * The competition distance varies greatly with a range of 20 to 75,860 meters between stores.
+   * The average competition opening month is 7.2 and the year is 2008.7, indicating that most competitors have been open for over 12 years.
+   * Around half of the stores have a promo2 running, with a mean of 0.5.
+   * Promo2 has been running since week 23.3 of the year and the average promo2 year is 2011.8.
+   * The dataset contains missing values in several columns, including competition distance, competition opening month and year, promo2 since week and year, and promo interval.
+   * The dataset contains categorical variables such as store type, assortment, state holiday, and day of week.
+   * The dataset contains a significant amount of variance in the sales variable, with a minimum of 0 and a maximum of 41,551.
 
-![r1](https://user-images.githubusercontent.com/102457813/218310603-284aa0fd-2cbe-48b2-9bcf-290f7083160e.png)
+Based on these findings, the ML project could potentially investigate the factors that impact sales and customer behavior, such as store type, assortment, competition distance, and promotions. The project could also explore ways to address the missing data and incorporate categorical variables into the analysis.
 
 
    
