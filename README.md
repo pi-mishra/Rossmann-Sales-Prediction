@@ -5,19 +5,17 @@
   * [Problem Statement](#problem-statement)
   * [Data Description](#data-description)
   * [Project Outline](#project-outline)
-    - 1 [Knowing the data](##Knowing-the-data)
-    - 2 [Normalization](#normalization)
-    - 3 [EDA](#eda)
-    - 4 [ Encoding categorical values](#encoding-categorical-values)
-    - 5 [Feature Selection](#feature-selection)
-    - 6 [Model Fitting](#model-fitting)
-    - 8 [Hyper-parameter Tuning](#hyper-parameter-tuning)
-    - 9 [Metrics Evaluation](#metrics-evaluation)
-  * [Conclusion](#conclusion)
-  * [Reference](#reference)
+    * [Knowing the Data](#knowing-the-data)
+    * [Understanding the Variables](#understanding-the-variables)
+    * [Data Wrangling](#data-wrangling)
+    * [Data Visualization](#data-visualization)
+    * [Feature Engineering and Data Pre processing](#feature-engineering-and-data-pre-processing)
+    * [Machine Learning Models](Machine-Learning-Models)
+    * [Metrics Evaluation](#metrics-evaluation)
+  * [Conclusion And Recommendation](#conclusion-and-recommendation)
 
 
-# Summary
+## Summary
 This project involved merging two datasets into one dataframe called all_store, which had 1017209 rows and 18 columns. The dataframe consisted of int, object, and float datatypes, and object datatypes were later converted to int. There were no duplicate values, but six columns had null values that needed to be treated.
 
 To better understand the data the year, month, and day from the "date" column were extracted and then dropped. The "Open" column was also dropped since no sales occurred when stores were closed. Furthermore, 49% of data was missing from columns "Promo2SinceWeek," "Promo2SinceYear," and "PromoInterval," so they were dropped. Considering date as categories we have filled ‘CompetitionOpenSinceMonth’ and 'CompetitionOpenSinceYear' with mode. Considering there is no competition or the competion is so far that there is no account of the data, so filling null values with 0.
@@ -30,10 +28,10 @@ To remove outliers the IQR method was used and then one-hot encoding was perform
 
 Conclusion was made that the decision tree and XG boost models outperformed linear, ridge, and lasso regression models in predicting sales of Rossman stores. The decision tree model achieved an R2 score of 0.973 and a low RMSE of 538, while the XG boost model achieved an R2 score of 0.926 and a relatively low RMSE of 849. In contrast, the linear, ridge, and lasso regression models achieved similar R2 scores of around 0.893, with higher RMSE values ranging from 1021 to 1022. The decision tree and XG boost models are more accurate and may be more robust to non-linear relationships in the data, making them the preferred models for predicting sales of Rossman stores.
 
-# Problem Statement
+## Problem Statement
 The problem statement is to predict the daily sales for Rossmann stores based on historical sales data and various influencing factors such as promotions, competition, holidays, seasonality, and store location. The goal is to provide store managers with accurate sales predictions for up to six weeks in advance to help them make informed decisions. The task is to forecast the sales column for a test set of 1,115 Rossmann stores using data such as store Id, store type, assortment level, competition distance, promo information, and other relevant factors. The accuracy of the predictions can vary based on individual store circumstances, and the challenge is to develop a model that can effectively consider all the influencing factors to produce accurate sales predictions.
 
-# Data Description
+## Data Description
 We have a 2 dataset which contains information about the sales data of 1115 stores after merging the data we have 1017209 rows and 18 columns. Sharing the deatails of the columns below-
 
 | Feature Name | Type | Description |
@@ -54,15 +52,15 @@ Promo2Since[Year/Week] | float64 | describes the year and calendar week when the
 PromoInterval | object | describes the consecutive intervals Promo2 is started, naming the months the promotion is started anew. E.g. "Feb,May,Aug,Nov" means each round starts in February, May, August, November of any given year for that store
 
 
-# Project Outline
+## Project Outline
 
-## Knowing the data-
+### Knowing the data
    * The 2 datasets are merged into 1 dataframe i.e. all_store consisting of 1017209 rows and 18 columns.
    * The dataframe consist of int, object and float datatypes. Object data type will be changed to int later.
    * There are 0 dublicate value.
    * There are 6 columns (CompetitionDistance, CompetitionOpenSinceMonth, CompetitionOpenSinceYear, Promo2SinceWeek, Promo2SinceYear, PromoInterval) that has null          values it needs to be treated.
 
-## Understanding the variables-
+### Understanding the variables
    * The average daily sales per store is 5,773 with an average of 633 customers per day.
    * Stores are open for business for most days with a mean of 0.8 indicating that they are closed only 20% of the time.
    * Promotions are run on average 40% of the time across all stores.
@@ -77,42 +75,66 @@ PromoInterval | object | describes the consecutive intervals Promo2 is started, 
 
 Based on these findings, the ML project could potentially investigate the factors that impact sales and customer behavior, such as store type, assortment, competition distance, and promotions. The project could also explore ways to address the missing data and incorporate categorical variables into the analysis.
 
-## Data Wrangling-
+### Data Wrangling
 Year , month and day was extracted from the ‘date’ column and then it was dropped. There were 0 sales when the stores were closed so we are dropping the ‘Open’ column as it will not provide any useful information for the analysis. 49% of data was missing from 'Promo2SinceWeek','Promo2SinceYear','PromoInterval' so we dropped the column. Considering date as categories we have filled ‘CompetitionOpenSinceMonth’ and 'CompetitionOpenSinceYear' with mode. Considering there is no competition or the competion is so far that there is no account of the data, so filling null values with 0.
 
-## Data Visualization-
+### Data Visualization
 The most common type of store is 'a' with 551627, followed by 'd' with 312912, 'c' with 136840, and the least common is 'b' with 15830. Storetype and sales are correlated, more the stores more will be the sales. Maximum number of sales was done on monday followed by tuesday, friday, wednesday,thursday, saturday and sunday. Same result was produced for average sales for different days of week. Average sales of store b were greater than other stores c,a,d respectively. Monthly sales over the year have increased. Increase in the number of stores will result in the increase of customers' visits. Increase in customers leads to increase in sales. Sales consist of right skewed data. 17% of stores were affected with the closure of public schools. There were no promo runned on Saturday and sunday. The sales increased when the promo was used.
 
-## Feature Engineering & Data Pre-processing
+### Feature Engineering and Data Pre processing
 Outliers were removed using the interquartile range (IQR) method, and one-hot encoding was applied to categorical variables. The continuous features were scaled using the min-max scaler.
 
 The selected methods were appropriate for the given dataset as they effectively addressed some common issues in machine learning tasks, such as handling outliers, transforming categorical features, and standardizing numerical data. The IQR method is a robust technique for detecting and removing outliers, especially when the distribution is skewed. One-hot encoding is a commonly used method to convert categorical features into numerical data that can be fed into machine learning models. Finally, the min-max scaler was used to rescale numerical features to the range between 0 and 1, which is a common normalization technique that preserves the original distribution of the data. Overall, these techniques can help improve the quality of the data and enhance the performance of machine learning models.
 
-## Machine Learning Models-
+### Machine Learning Models
 
-### Linear regression-
+#### Linear regression-
 Linear regression is one of the most basic types of regression in supervised machine learning. The linear regression model consists of a predictor variable and a dependent variable related linearly to each other. We try to find the relationship between independent variable (input) and a corresponding dependent variable (output).
 
-### Ridge-
+#### Ridge-
 Ridge regression is an extension for linear regression. Ridge regression is a linear regression model that introduces a regularization term to the cost function, which penalizes large coefficients of the independent variables. The regularization helps to reduce the impact of multicollinearity and produces a more stable and reliable model. Ridge regression is widely used in machine learning and data science for improving the accuracy of linear regression models.
 
-### Lasso-
+#### Lasso-
 Lasso regression is a linear regression model that introduces a regularization term to the cost function, which penalizes large coefficients of the independent variables and can lead to some coefficients being exactly zero. This makes lasso regression useful for feature selection and model simplification. Lasso regression is widely used in machine learning and data science for improving the interpretability and generalization of linear regression models.
 
+#### Decision Tree-
+Decision tree regression is a non-parametric regression model that partitions the feature space into a set of disjoint regions, and predicts the target variable by averaging the values of the training samples in each region. The partitions are made by recursively splitting the feature space along the dimensions that best separate the target variable. Decision tree regression is widely used in machine learning and data science for its simplicity, interpretability, and ability to capture non-linear relationships.
 
-Conclusion and recommendation-
-   •	Store type B has the maximum number of average sales. 
-   •	Maximum number of stores are closed on Sunday. So there is increase in average sales on Monday.
-   •	Assortment type B has the maximum number of average sales.
-   •	17.9% of data suggest that closure of public-school effect the sales.
-   •	Average competition distance is 5.4.
-   •	Sales in 2013, 2014 and 2015 are stagnant, there is a hardly increase in sales.
-   •	As the competition distance increase the sales decrease. This shows that customers are churning to Rossmann Stores, so we should open more store where competition       is available.
-   •	Store type B should be increased and assortment B should be added to it.
-   •	When there is closure of public school more promotion should be done to increase the sales.
-   •	Stores should be open on Sundays as there is demands on Sundays also, some people might have gone to the competition stores for the products.
-   •	If there was use of promo the sales increased, use of promo should be in increased in the stores specially during holidays.
-   •	Decision tree should be used in the analysis as it outperforms other models and has a r-squared score of 0.97.
+#### XGBoost-
+XGBoost regression is a boosted tree regression model that combines multiple decision trees and minimizes a regularized loss function to make predictions. It uses gradient boosting to optimize the model by iteratively adding weak learners that improve the prediction accuracy. XGBoost regression is widely used in machine learning and data science for its high performance, scalability, and flexibility.
+
+### Metrics Evaluation
+R2 Score:
+R2 Score, also known as the coefficient of determination, is a statistical metric that measures how well a regression model fits the data. It is a value between 0 and 1, where 1 indicates a perfect fit and 0 indicates no fit at all. R2 Score is calculated as the proportion of the variance in the dependent variable that is explained by the independent variable(s).
+
+Adjusted R2 Score:
+Adjusted R2 Score is a modified version of the R2 Score that takes into account the number of independent variables in the model. It penalizes the R2 Score for including too many variables that do not contribute to the explanation of the dependent variable. The Adjusted R2 Score is always less than or equal to the R2 Score.
+
+MAE:
+MAE, or Mean Absolute Error, is a metric that measures the average magnitude of errors in a set of predictions. It is the average of the absolute differences between the predicted and actual values. MAE is a useful metric when the data contains outliers.
+
+MSE:
+MSE, or Mean Squared Error, is another metric that measures the average magnitude of errors in a set of predictions. It is the average of the squared differences between the predicted and actual values. MSE is useful when you want to penalize large errors more than small errors.
+
+RMSE:
+RMSE, or Root Mean Squared Error, is the square root of the MSE. It is a commonly used metric to evaluate the performance of regression models, as it gives more weight to larger errors. RMSE is useful when you want to measure the average magnitude of the error in the same units as the dependent variable.
+
+## Conclusion And Recommendation
+
+* Decision tree and XGBoost models outperformed linear, ridge, and lasso regression models in predicting Rossman store sales.
+* Linear, ridge, and lasso regression models achieved similar R2 scores, but with higher RMSE values and may not capture non-linear relationships.
+* Decision tree and XGBoost models offer high accuracy and may be more robust to non-linear relationships in the data.
+* Store type B has the highest average sales, so consider expanding this store type.
+* Most stores are closed on Sundays, but sales increase on Mondays, so consider opening stores on Sundays.
+* Assortment type B has the highest average sales, so consider adding it to Store type B.
+* Closure of public schools affects sales, so consider increasing promotion during these times.
+* Average competition distance is 5.4, and increasing distance decreases sales, so consider opening more stores in areas with competition.
+* Use of promotions increases sales, especially during holidays, so consider increasing promo use in stores.
+* Decision tree model is recommended for analysis, as it outperforms other models with an R2 score of 0.97.
+
+![image](https://user-images.githubusercontent.com/102457813/220642325-521d4524-474e-4605-85ea-9c768706cf81.png)
+
+
 
 
 
