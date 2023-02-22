@@ -77,6 +77,16 @@ PromoInterval | object | describes the consecutive intervals Promo2 is started, 
 
 Based on these findings, the ML project could potentially investigate the factors that impact sales and customer behavior, such as store type, assortment, competition distance, and promotions. The project could also explore ways to address the missing data and incorporate categorical variables into the analysis.
 
+## Data Wrangling-
+Year , month and day was extracted from the ‘date’ column and then it was dropped. There were 0 sales when the stores were closed so we are dropping the ‘Open’ column as it will not provide any useful information for the analysis. 49% of data was missing from 'Promo2SinceWeek','Promo2SinceYear','PromoInterval' so we dropped the column. Considering date as categories we have filled ‘CompetitionOpenSinceMonth’ and 'CompetitionOpenSinceYear' with mode. Considering there is no competition or the competion is so far that there is no account of the data, so filling null values with 0.
+
+## Data Visualization-
+The most common type of store is 'a' with 551627, followed by 'd' with 312912, 'c' with 136840, and the least common is 'b' with 15830. Storetype and sales are correlated, more the stores more will be the sales. Maximum number of sales was done on monday followed by tuesday, friday, wednesday,thursday, saturday and sunday. Same result was produced for average sales for different days of week. Average sales of store b were greater than other stores c,a,d respectively. Monthly sales over the year have increased. Increase in the number of stores will result in the increase of customers' visits. Increase in customers leads to increase in sales. Sales consist of right skewed data. 17% of stores were affected with the closure of public schools. There were no promo runned on Saturday and sunday. The sales increased when the promo was used.
+
+## Feature Engineering & Data Pre-processing
+Outliers were removed using the interquartile range (IQR) method, and one-hot encoding was applied to categorical variables. The continuous features were scaled using the min-max scaler.
+
+The selected methods were appropriate for the given dataset as they effectively addressed some common issues in machine learning tasks, such as handling outliers, transforming categorical features, and standardizing numerical data. The IQR method is a robust technique for detecting and removing outliers, especially when the distribution is skewed. One-hot encoding is a commonly used method to convert categorical features into numerical data that can be fed into machine learning models. Finally, the min-max scaler was used to rescale numerical features to the range between 0 and 1, which is a common normalization technique that preserves the original distribution of the data. Overall, these techniques can help improve the quality of the data and enhance the performance of machine learning models.
 
    
 Conclusion and recommendation-
