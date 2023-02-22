@@ -88,7 +88,18 @@ Outliers were removed using the interquartile range (IQR) method, and one-hot en
 
 The selected methods were appropriate for the given dataset as they effectively addressed some common issues in machine learning tasks, such as handling outliers, transforming categorical features, and standardizing numerical data. The IQR method is a robust technique for detecting and removing outliers, especially when the distribution is skewed. One-hot encoding is a commonly used method to convert categorical features into numerical data that can be fed into machine learning models. Finally, the min-max scaler was used to rescale numerical features to the range between 0 and 1, which is a common normalization technique that preserves the original distribution of the data. Overall, these techniques can help improve the quality of the data and enhance the performance of machine learning models.
 
-   
+## Machine Learning Models-
+
+### Linear regression-
+Linear regression is one of the most basic types of regression in supervised machine learning. The linear regression model consists of a predictor variable and a dependent variable related linearly to each other. We try to find the relationship between independent variable (input) and a corresponding dependent variable (output).
+
+### Ridge-
+Ridge regression is an extension for linear regression. Ridge regression is a linear regression model that introduces a regularization term to the cost function, which penalizes large coefficients of the independent variables. The regularization helps to reduce the impact of multicollinearity and produces a more stable and reliable model. Ridge regression is widely used in machine learning and data science for improving the accuracy of linear regression models.
+
+### Lasso-
+Lasso regression is a linear regression model that introduces a regularization term to the cost function, which penalizes large coefficients of the independent variables and can lead to some coefficients being exactly zero. This makes lasso regression useful for feature selection and model simplification. Lasso regression is widely used in machine learning and data science for improving the interpretability and generalization of linear regression models.
+
+
 Conclusion and recommendation-
    •	Store type B has the maximum number of average sales. 
    •	Maximum number of stores are closed on Sunday. So there is increase in average sales on Monday.
