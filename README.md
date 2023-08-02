@@ -121,18 +121,23 @@ RMSE, or Root Mean Squared Error, is the square root of the MSE. It is a commonl
 
 ## Conclusion And Recommendation
 
-* Decision tree and XGBoost models outperformed linear, ridge, and lasso regression models in predicting Rossman store sales.
-* Linear, ridge, and lasso regression models achieved similar R2 scores, but with higher RMSE values and may not capture non-linear relationships.
-* Decision tree and XGBoost models offer high accuracy and may be more robust to non-linear relationships in the data.
-* Store type B has the highest average sales, so consider expanding this store type.
-* Most stores are closed on Sundays, but sales increase on Mondays, so consider opening stores on Sundays.
-* Assortment type B has the highest average sales, so consider adding it to Store type B.
-* Closure of public schools affects sales, so consider increasing promotion during these times.
-* Average competition distance is 5.4, and increasing distance decreases sales, so consider opening more stores in areas with competition.
-* Use of promotions increases sales, especially during holidays, so consider increasing promo use in stores.
-* Decision tree model is recommended for analysis, as it outperforms other models with an R2 score of 0.97.
+In this data science project aimed at predicting sales for Rossmann_Stores, we evaluated the performance of various machine learning models using several metrics, including R score, Adjusted R score, Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and Mean Absolute Error (MAE).
 
-![image](https://user-images.githubusercontent.com/102457813/220642325-521d4524-474e-4605-85ea-9c768706cf81.png)
+Based on our analysis, the results show that the XGBoost model (xgb_model) achieved the highest R score of 0.980071, indicating excellent predictive capability. The Adjusted R score, which considers the complexity of the model, is also very close to the R score, suggesting that the model's performance is reliable and not heavily influenced by overfitting.
+
+The Decision Tree model (decision_tree) demonstrated strong performance as well, with an R score of 0.972925. While slightly below the XGBoost model, it remains a competitive option for predicting store sales.
+
+The Gradient Boosting model (gradient_boosting) follows with an R score of 0.932960. While it is less accurate than the top two models, it may still provide valuable predictions for store sales.
+
+The Ridge model (ridge), Linear Regression model (linear_regression), and Lasso model (lasso) show similar R scores of approximately 0.903, indicating moderate predictive ability for store sales.
+
+The AdaBoost model (AdaBoost) falls further behind, with an R score of 0.852333, suggesting limited accuracy in predicting sales for multiple stores.
+
+Lastly, the Elastic Net model (elastic_net) performed the least favorably among all models, with an R score of 0.319279. It is apparent that this model may not be well-suited for this specific prediction task and requires further investigation or potentially different modeling approaches.
+
+Overall, the XGBoost model stands out as the best performer, demonstrating the highest predictive accuracy for sales across multiple stores. However, it is crucial to consider other factors such as model interpretability, computational complexity, and data size when selecting the final model for deployment.
+
+![image](https://github.com/pi-mishra/Rossmann-Sales-Prediction-Regression-/assets/102457813/d404da20-d603-4017-a3ec-2ae92a56a731)
 
 
 
